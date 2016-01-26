@@ -2,6 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
+    <link rel="shortcut icon" href="<?=base_url()?>favicon2.ico" type="image/x-icon" />
     <title><?=$title?></title>
     <?=$this->load->view("import_")?>
 

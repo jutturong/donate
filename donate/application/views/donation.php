@@ -1,22 +1,37 @@
  
 
 
-<div style="margin:20px 0 10px 0;"></div>
-    <div class="easyui-panel"  id="dg_donation" title="รายนามทั้งหมดของผู้บริจาค" style="width:800px;height:600px;padding:10px;"
+
+    <div class="easyui-panel"  id="dg_donation" title="รายนามทั้งหมดของผู้บริจาค" style="width:800px;height:400px;padding:10px;"
             data-options="iconCls:'icon-man',
             closable:true,  
             closed:true, 
             tools:'#tt'
             ">
+        <div style="margin:20px 0 10px 0;"></div>
         <table class="easyui-datagrid"  data-options=" 
                url:'<?=base_url()?>index.php/welcome/tb_donation',
                columnfits:true,
+               autoRowHeight:true,
+               rownumbers:true,
+               singleSelect:true,
+               pagination:true,
+               rowStyler:function(index,row)
+               { 
+                   var  ck= row.id_donation % 2
+                  // if( row.id_donation > 5 )
+                    if( ck == 0 )
+                   { return 'background-color:#6293BB;color:#fff;'; } 
+               },
                columns:[[  
                   
                    {  field:'id_donation',title:'ID'  },
                    {  field:'name_donation',title:'ชื่อ' },
                    {  field:'lastname_donation', title:' นามสกุล ' },
                    {  field:'date_donation', title:' วัน-เดือน-ปี ที่บริจาค ' },
+                   {  field:'tax', title:' รูปแบบการบริจาค ' },
+                   {  field:'amount' ,title:' จำนวนบริจาค ' },
+                   { field:'address' ,title:' ที่อยู่ผู้บริจาค ' },
                    
                ]]
                ">

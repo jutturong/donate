@@ -18,7 +18,7 @@ class Welcome extends CI_Controller {
 	 * @see http://codeigniter.com/user_guide/general/urls.html
 	 */
     
-                var   $title="Donate System Cleft KKU";
+                var   $title=" .:: โปรแกรมรายนามผู้บริจาคศูนย์ตะวันฉาย ::. ";
 	public function index()
 	{
 		//$this->load->view('welcome_message');
@@ -32,9 +32,16 @@ class Welcome extends CI_Controller {
         }
         public function tb_donation() //table donation
         {
+            $p = isset($_POST['page']) ? intval($_POST['page']) : 1;
+            
+            $r = isset($_POST['rows']) ? intval($_POST['rows']) : 10;
+            $cal=$p*$r;
+
               $tb="donation";
-              $this->db->order_by("date_donation","DESC");
-              $query=$this->db->get($tb,10);
+           
+             // $this->db->order_by("date_donation","DESC");
+              $query=$this->db->get($tb,$r,$cal);
+              // $this->db->limit( $r ,$cal );
               
               foreach($query->result() as $row)
               {
