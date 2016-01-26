@@ -2,12 +2,12 @@
 <html >
   <head>
     <meta charset="UTF-8">
-    <title>Material Login Form</title>
+    <title><?=$title?></title>
     
     
-    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="<?=base_url()?>js_login/css/reset.css">
 
-    <link rel='stylesheet prefetch' href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900|RobotoDraft:400,100,300,500,700,900'>
+ <link rel='stylesheet prefetch' href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900|RobotoDraft:400,100,300,500,700,900'>
 <link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
 
         <link rel="stylesheet" href="<?=base_url()?>js_login/css/style.css">
@@ -22,30 +22,41 @@
     
 <!-- Mixins-->
 <!-- Pen Title-->
+
+<!--
 <div class="pen-title">
-  <h1>Material Login Form</h1><span>Pen <i class='fa fa-code'></i> by <a href='http://andytran.me'>Andy Tran</a></span>
+  <h1><?=$title?></h1><span>Pen <i class='fa fa-code'></i> by <a href='http://andytran.me'>Andy Tran</a></span>
 </div>
+-->
+
+<!--
 <div class="rerun"><a href="">Rerun Pen</a></div>
+-->
+
 <div class="container">
   <div class="card"></div>
   <div class="card">
-    <h1 class="title">Login</h1>
-    <form>
+    <h1 class="title">Login System</h1>
+    
+    <?=form_open("welcome/checklogin")?>
+    <!-- <form > -->
       <div class="input-container">
-        <input type="text" id="Username" required="required"/>
+          <input type="text" id="Username"  value="finan" required="required"/>
         <label for="Username">Username</label>
         <div class="bar"></div>
       </div>
       <div class="input-container">
-        <input type="password" id="Password" required="required"/>
+          <input type="password" id="Password" value="tawanchai"  required="required"/>
         <label for="Password">Password</label>
         <div class="bar"></div>
       </div>
       <div class="button-container">
         <button><span>Go</span></button>
       </div>
-      <div class="footer"><a href="#">Forgot your password?</a></div>
-    </form>
+      <div class="footer"><a href="javascript:void(0)">Forgot your password?</a></div>
+  <!--  </form> -->
+  <?=form_close()?>
+  
   </div>
   <div class="card alt">
     <div class="toggle"></div>
@@ -78,7 +89,7 @@
 <!-- CodePen--><a id="codepen" href="http://codepen.io/andytran/" title="Follow me!"><i class="fa fa-codepen"></i></a>
     <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 
-        <script src="js/index.js"></script>
+        <script src="<?=base_url()?>js_login/js/index.js"></script>
 
     
     

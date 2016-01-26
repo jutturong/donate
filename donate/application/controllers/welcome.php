@@ -17,11 +17,31 @@ class Welcome extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see http://codeigniter.com/user_guide/general/urls.html
 	 */
+    
+                var   $title="Donate System Cleft KKU";
 	public function index()
 	{
 		//$this->load->view('welcome_message');
-                            $this->load->view("login");
+                            $data["title"]=$this->title;
+                            $this->load->view("login",$data);
 	}
+        public function checklogin()
+        {
+                 $data["title"]=$this->title;
+                            $this->load->view("home",$data);
+        }
+        public function tb_donation() //table donation
+        {
+              $tb="donation";
+              $this->db->order_by("date_donation","DESC");
+              $query=$this->db->get($tb,10);
+              
+              foreach($query->result() as $row)
+              {
+                  $rows[]=$row;
+              }
+              echo json_encode($rows);
+        }
 }
 
 /* End of file welcome.php */
