@@ -19,6 +19,7 @@ class Welcome extends CI_Controller {
 	 */
     
                 var   $title=" .:: โปรแกรมรายนามผู้บริจาคศูนย์ตะวันฉาย ::. ";
+                var   $limit=15;
 	public function index()
 	{
 		//$this->load->view('welcome_message');
@@ -41,60 +42,55 @@ class Welcome extends CI_Controller {
         public  function page_danation()
         {
            # http://10.87.196.113/donate/index.php/welcome/page_danation
+            
+           // $p = isset($_POST['page']) ? intval($_POST['page']) : 1;
+            $p=$this->uri->segment(3);
+            $list=$this->uri->segment(4);
+            $limit=$this->limit;
+            $cal=($p - 1 )*$limit;
+            
               $tb="donation";
               $all=$this->db->query("select  *  from  $tb");
               $count= $all->num_rows();
-              $page= ceil( $count/10  );
-               for($i=0;$i<=$page;$i++)
-               {
-                     $rows["page"]=$i;
-               }
-               echo  json_encode($rows);
+              
+             if( $p > 1  ) 
+             {
+               $query=$this->db->get($tb,$this->limit, $cal);
+             }
+             elseif( $list > 15   )
+             {
+                  $query=$this->db->get($tb,$list);
+             }
+             elseif(  $list <= 15 )
+             {
+                  $query=$this->db->get($tb,$this->limit);
+             
+             }
+               
+              foreach($query->result() as $row)
+              {
+                  $rows[]=$row;
+              }
+              echo json_encode($rows);
+             
+          
         }
         public function tb_donation() //table donation
         {
-            $p = isset($_POST['page']) ? intval($_POST['page']) : 1;
-             // $p = $this->input->get_post("page");
-
-            $r = isset($_POST['rows']) ? intval($_POST['rows']) : 10;
-           //  $r = $this->input->get_post("rows");
-             $cal=$p*10;
-             $cal_=($p-1)*10;
-
+            //$p = isset($_POST['page']) ? intval($_POST['page']) : 1;
+            //$r = isset($_POST['rows']) ? intval($_POST['rows']) : 10;
               $tb="donation";
+              
+              /*
               $all=$this->db->query("select  *  from  $tb");
               $count= $all->num_rows();
-              
               $section= $count/2;
-           
-              $this->db->order_by("date_donation","DESC");
-            //  $query=$this->db->get($tb,$r,$cal);
-             // $query=$this->db->get($tb,$cal,$r);
-              // 
-              
-              //$query=$this->db->get($tb,10,$cal_);
-          
-              /*
-              $row_limit = 10;
-              if(  $r <=  $row_limit  && $p == 1  )
-              {
-                   $this->db->limit(    $section  , 0 );
-              }
-              elseif( $r > 10  && $p == 1 )
-              {
-                   $this->db->limit(  $row_limit , $r - 10 );
-              }
-              
-              if( $p > 1  )
-              {
-                    $this->db->limit(  $row_limit , 20 );
-              }
-              */
-              
-                $this->db->limit(   10  );
-           
-              
-               $query=$this->db->get($tb);
+           */
+
+             
+              $this->db->limit(  $this->limit  );
+            //   $this->db->order_by("id_donation","DESC");
+               $query=$this->db->get($tb);     
                
               foreach($query->result() as $row)
               {
