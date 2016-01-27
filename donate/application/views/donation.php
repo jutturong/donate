@@ -1,4 +1,10 @@
-
+<script type="text/javascript">
+     function  reload_danation()
+     {
+        //$.messager.alert('t');
+         $('#tb_donation').datagrid('load','<?=base_url()?>index.php/welcome/tb_donation');
+     }
+</script>
 
 
 <div style="margin:20px 0 10px 0;"></div>
@@ -66,10 +72,13 @@
 
 <div id="tt" >
         
+    <a href="javascript:void(0)" class="icon-reload" onclick="reload_danation()"></a>
+      <!--
         <a href="javascript:void(0)" class="icon-add" onclick="javascript:alert('add')"></a>
         <a href="javascript:void(0)" class="icon-edit" onclick="javascript:alert('edit')"></a>
         <a href="javascript:void(0)" class="icon-cut" onclick="javascript:alert('cut')"></a>
         <a href="javascript:void(0)" class="icon-help" onclick="javascript:alert('help')"></a>
+      -->
     </div>
 
 

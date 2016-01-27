@@ -108,8 +108,38 @@ class Welcome extends CI_Controller {
              
           
         }
+        public function  serch_donation()
+        {
+            # http://10.87.196.113/donate/index.php/welcome/serch_donation
+               $ck=$this->session->userdata('sess_status_login'); 
+               $this->authentication->check_authentication($ck);
+             $tb="donation";
+             $this->db->limit(  $this->limit  );
+             $query=$this->db->get($tb,10);     
+              foreach($query->result() as $row)
+              {
+                  $rows[]=$row;
+              }
+              echo json_encode($rows);       
+        }
+        public  function  search_by_name()
+        {
+            # http://10.87.196.113/donate/index.php/welcome/search_by_name
+            $tb="donation";
+          //  $this->db->like("","");
+             $this->db->limit(  $this->limit  );
+             $id_donation=$this->uri->segment(3);
+             $query=$this->db->get_where($tb,array("id_donation"=>$id_donation),10);     
+              foreach($query->result() as $row)
+              {
+                  $rows[]=$row;
+              }
+              echo json_encode($rows); 
+            
+        }
         public function tb_donation() //table donation
         {
+            # http://10.87.196.113/donate/index.php/welcome/tb_donation
             //$p = isset($_POST['page']) ? intval($_POST['page']) : 1;
             //$r = isset($_POST['rows']) ? intval($_POST['rows']) : 10;
                $ck=$this->session->userdata('sess_status_login'); 
