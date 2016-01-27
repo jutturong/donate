@@ -41,12 +41,12 @@
     <?=form_open("welcome/checklogin")?>
     <!-- <form > -->
       <div class="input-container">
-          <input type="text" id="Username"  value="finan" required="required"/>
+          <input type="text" id="Username" name="Username"  value="finan" required="required"/>
         <label for="Username">Username</label>
         <div class="bar"></div>
       </div>
       <div class="input-container">
-          <input type="password" id="Password" value="tawanchai"  required="required"/>
+          <input type="password" id="Password"  name="Password" value="tawanchai"  required="required"/>
         <label for="Password">Password</label>
         <div class="bar"></div>
       </div>

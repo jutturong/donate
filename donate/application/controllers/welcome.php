@@ -1,34 +1,59 @@
+<?php  ob_start(); ?>
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-
 class Welcome extends CI_Controller {
-
-	/**
-	 * Index Page for this controller.
-	 *
-	 * Maps to the following URL
-	 * 		http://example.com/index.php/welcome
-	 *	- or -  
-	 * 		http://example.com/index.php/welcome/index
-	 *	- or -
-	 * Since this controller is set as the default controller in 
-	 * config/routes.php, it's displayed at http://example.com/
-	 *
-	 * So any other public methods not prefixed with an underscore will
-	 * map to /index.php/welcome/<method_name>
-	 * @see http://codeigniter.com/user_guide/general/urls.html
-	 */
-    
+   
                 var   $title=" .:: โปรแกรมรายนามผู้บริจาคศูนย์ตะวันฉาย ::. ";
                 var   $limit=15;
+                
+                    function __construct()
+                    {
+                        // Call the Model constructor
+                          parent::__construct();
+                          $this->load->model('authentication');
+                    }
+                    
+                    
 	public function index()
 	{
 		//$this->load->view('welcome_message');
                             $data["title"]=$this->title;
                             $this->load->view("login",$data);
+                            
+                                 $arr_login=array(
+                                                'sess_UserName'=>"",
+                                                'sess_UserSurname'=>"",
+                                                'sess_UserType'=>"",
+                                                'sess_UserCode'=>"",
+                                                'sess_Unused'=>"",
+                                                'sess_status_login'=>0,
+                                            );
+                                       $this->session->set_userdata($arr_login);
+                                       
 	}
         public function checklogin()
         {
+              echo'<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />';
               
+               $UserName=$this->input->get_post("Username");
+           
+               $Password=$this->input->get_post("Password");
+           
+               $tb="user";
+               $Query=$this->db->get_where($tb,array("username"=> $UserName,"password"=>$Password ));
+               $ck=$Query->num_rows();
+               
+               if( $ck == 1 )
+               {
+                   
+                    $arr_login=array(
+                                                'sess_UserName'=> $UserName,
+                                                'sess_status_login'=>1,
+                                            );
+                   $this->session->set_userdata($arr_login);
+                                       
+                  // $this->session->userdata('sess_UserName');              
+                  //  $this->session->userdata('sess_status_login');           
+               
                             $data["title"]=$this->title;
                             
               $tb="donation";
@@ -37,13 +62,21 @@ class Welcome extends CI_Controller {
             // echo  $data["maxpage"]= ceil( $count/10  );
                $data["maxpage"]=$all->num_rows();
                $this->load->view("home",$data);
+               }
+               else
+               {
+                  redirect("welcome/index/");
+               }
         }
         
         public  function page_danation()
         {
            # http://10.87.196.113/donate/index.php/welcome/page_danation
-            
+          // $this->session->userdata('sess_status_login'); 
+          //  $this->authentication->heck_authentication();
            // $p = isset($_POST['page']) ? intval($_POST['page']) : 1;
+               $ck=$this->session->userdata('sess_status_login'); 
+               $this->authentication->check_authentication($ck);
             $p=$this->uri->segment(3);
             $list=$this->uri->segment(4);
             $limit=$this->limit;
@@ -79,6 +112,8 @@ class Welcome extends CI_Controller {
         {
             //$p = isset($_POST['page']) ? intval($_POST['page']) : 1;
             //$r = isset($_POST['rows']) ? intval($_POST['rows']) : 10;
+               $ck=$this->session->userdata('sess_status_login'); 
+               $this->authentication->check_authentication($ck);
               $tb="donation";
               
               /*

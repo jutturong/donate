@@ -8,7 +8,7 @@
 
 function sigout()
 {
-       window.open("<?=base_url()?>index.php/");
+       window.location="<?=base_url()?>index.php/";
  }
 
 </script>   
