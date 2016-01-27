@@ -6,6 +6,10 @@
           $('#dg_donation').panel('open');
    }
 
+function sigout()
+{
+       window.open("<?=base_url()?>index.php/");
+ }
 
 </script>   
 
@@ -16,6 +20,7 @@
         <a href="#" class="easyui-menubutton" data-options="menu:'#mm1',iconCls:'icon-edit'">Operation (เครื่องมือต่างๆ)</a>
         <a href="#" class="easyui-menubutton" data-options="menu:'#mm2',iconCls:'icon-help'">Administrator</a>
         <a href="#" class="easyui-menubutton" data-options="menu:'#mm3'">เกี่ยวกับการบริจาค</a>
+        <a href="javascript:void(0)"  class="easyui-linkbutton"  data-options=" iconCls:'icon-cancel'  ,plain:true  "   onclick=" sigout() "   > Sign Out </a>
     </div>
     <div id="mm1" style="width:150px;">
         <div data-options="iconCls:'icon-undo'">Undo</div>
