@@ -17,7 +17,7 @@ function sigout()
 <div style="margin:20px 0;"></div>
     <div class="easyui-panel" style="padding:5px;">
         <a href="javascript:void(0)" class="easyui-linkbutton"  onclick="mainmenu1()" data-options="iconCls:'icon-man' , plain:true  " >รายนามผู้บริจาค</a>
-        <a href="javascript:void(0)"  class="easyui-linkbutton"   data-options=" iconCls:'icon-search'  "   onclick=" $('#win_search').window('open');  "  >ค้นหา</a>
+        <a href="javascript:void(0)"  class="easyui-linkbutton"   data-options=" iconCls:'icon-cut' ,  plain:true  "   onclick=" $('#win_search').window('open');  "  >ค้นหา</a>
         <a href="#" class="easyui-menubutton" data-options="menu:'#mm1',iconCls:'icon-edit'">Operation (เครื่องมือต่างๆ)</a>
         <a href="#" class="easyui-menubutton" data-options="menu:'#mm2',iconCls:'icon-reload'">Administrator</a>
       <!-- <a href="#" class="easyui-menubutton" data-options="menu:'#mm3'">เกี่ยวกับการบริจาค</a> -->
@@ -29,7 +29,7 @@ function sigout()
         <div data-options="iconCls:'icon-redo'">Redo</div>
         <div class="menu-sep"></div>
         -->
-        <div data-options=" iconCls:'icon-man'  " >เพิ่มรายนามผู้บริจาค</div>
+        <div data-options=" iconCls:'icon-man'  "  onclick="$('#dia_donate').dialog('open')" >เพิ่มรายนามผู้บริจาค</div>
         <div class="menu-sep"></div>
         <div data-options=" iconCls:'icon-search'  "   onclick=" $('#win_search').window('open');  "  >ค้นหา</div>
         
@@ -54,7 +54,7 @@ function sigout()
         
     </div>
     <div id="mm2" style="width:100px;">
-        <div data-options="iconCls:'icon-man'  ">เพิ่มผู้ใช้งาน</div>
+        <div data-options="iconCls:'icon-man'  "  onclick=" $('#p_user').panel('open');  "  >เพิ่มผู้ใช้งาน</div>
      <!--   <div>Update</div>
         <div>About</div> -->
     </div>
