@@ -114,12 +114,14 @@ class Welcome extends CI_Controller {
                 
                $ck=$this->session->userdata('sess_status_login'); 
                $this->authentication->check_authentication($ck);
+                 $q = isset($_POST['q']) ? $_POST['q'] : '';  // the request parameter
+                 
              $tb="donation";
              
              //$this->db->limit(  $this->limit  );
              
              // $name=trim($this->uri->segment(3));
-             $q = isset($_POST['q']) ? $_POST['q'] : '';  // the request parameter
+           
              $this->db->like("name_donation",$q );
              $query=$this->db->get($tb);     
               foreach($query->result() as $row)
@@ -356,6 +358,22 @@ LIMIT 0 , 30
             echo  json_encode($rows);
         }
         
+        public function  autocomp_donate()
+        {
+            //http://10.87.196.113/donate/index.php/welcome/grid_donate
+             $tb="donation";
+             //$name_donation=$this->input->get_post("name_donation");
+              $q = isset($_POST['q']) ? $_POST['q'] : ''; 
+             //$q = isset($_POST['q']) ? $_POST['q'] : '';
+             $query=$this->db->query(" select  *   from  $tb   where  'name_donation'  like  ('%$q%');  ");
+         //      $query=$this->db->query(" select  *   from  $tb   name_donation  like  ('%$q%');  ");
+              foreach($query->result() as $row )      
+              {
+                    $rows[]=$row;
+              }
+              echo  json_encode($rows);
+        }
+        
         public function  fetch_donate()
         {
                      //http://10.87.196.113/donate/index.php/welcome/fetch_donate/8         
@@ -368,6 +386,7 @@ LIMIT 0 , 30
                       }
                        echo  json_encode($rows);
         }
+        
 }
 
 /* End of file welcome.php */

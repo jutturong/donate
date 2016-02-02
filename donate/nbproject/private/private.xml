@@ -7,12 +7,10 @@
             <file>file:/C:/xampp/htdocs/donate/application/views/import_.php</file>
             <file>file:/C:/xampp/htdocs/donate/application/views/menu.php</file>
             <file>file:/C:/xampp/htdocs/donate/application/views/donation.php</file>
-            <file>file:/C:/xampp/htdocs/donate/application/views/login.php</file>
-            <file>file:/C:/xampp/htdocs/donate/application/models/authentication.php</file>
-            <file>file:/C:/xampp/htdocs/donate/application/config/autoload.php</file>
             <file>file:/C:/xampp/htdocs/donate/application/controllers/welcome.php</file>
-            <file>file:/C:/xampp/htdocs/donate/application/config/routes.php</file>
+            <file>file:/C:/xampp/htdocs/donate/application/config/database.php</file>
             <file>file:/C:/xampp/htdocs/donate/application/views/search.php</file>
+            <file>file:/C:/xampp/htdocs/donate/application/config/config.php</file>
             <file>file:/C:/xampp/htdocs/donate/application/views/form_donate.php</file>
         </group>
     </open-files>

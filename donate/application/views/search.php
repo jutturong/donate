@@ -13,22 +13,31 @@
                                 $('#tb_donation').datagrid('load',  comp    );
                                 
     }
-    
-   
-      
 </script> 
+
 <!-- ค้นหา -->
-    <div class="easyui-window"  id="win_search"
+    <div class="easyui-dialog"  id="win_search"
          data-options="  
          closed:true,
          iconCls:'icon-man',
          modal:true,
+         buttons:[  
+           {
+               text:'Close',
+               iconCls:'icon-cancel',
+              
+               handler:function()
+               {  
+                   $('#win_search').dialog('close');
+               }
+           }
+         ]
          "
          title=" ค้นหาชื่อรายนามผู้บริจาค "
-         style=" width:450px;height: 240px"
+         style=" width:500px;height: 300px; padding: 10px 10;left:100;top:70"
          >
        
-       <div style="margin:10px 0 10px 0;"></div> 
+    
        <table>
            <tr>
                <td>
@@ -148,18 +157,7 @@
                </td>
                <td>
                    
-                   <!--
-                   <input class="easyui-textbox"  id="address" style="width:200px; height: 30px"   data-options="
-                          iconCls:'icon-man',
-                          onChange:function(e)
-                              {   
-                                 // alert('t');
-                                 ////http://10.87.196.113/donate/index.php/welcome/address/ก
-                                   $('#dg_donation').panel('open');
-                                   $('#tb_donation').datagrid('load', '<?=base_url()?>index.php/welcome/address/'  +    $('#address').textbox('getValue')    );
-                              },
-                          "   />
-                   -->
+                   
                    
                    <input class="easyui-combobox"  
                           id="address"

@@ -107,6 +107,7 @@
                singleSelect:true,
                pagination:false,
                panelHeight:'auto',
+               fitColumns:true,
                onSelect:function()
                {
                   // $.messager.alert('t');
@@ -121,13 +122,14 @@
                },
                columns:[[      
                  //  {  field:'id_donation',title:'ID'  },
-                   { field:'num1' ,title:' เล่มที่ ' }, 
-                   { field:'num2' ,title:' เลขที่ ' }, 
-                   {  field:'name_donation'   ,title:'ชื่อ-นามสกุล' },
-                   {  field:'lastname_donation', title:' นามสกุล ' },
-                   {  field:'date_donation', title:' วัน-เดือน-ปี ที่บริจาค ' },
-                   {  field:'tax', title:' รูปแบบการบริจาค ' },
+               //    { field:'num1' ,title:' เล่มที่ ' }, 
+               //    { field:'num2' ,title:' เลขที่ ' }, 
+                   {  field: 'name_donation'   ,title:'ชื่อ' , sortable:true , align:'left' , width:'200'  },
+                   {  field:'lastname_donation', title:' นามสกุล ' ,  align:'left' , width:'200'  },
                    {  field:'amount' ,title:' จำนวนบริจาค ' },
+                   {  field:'date_donation', title:' ปี/เดือน/วัน ที่บริจาค ' },
+                   {  field:'tax', title:' รูปแบบการบริจาค ' },
+                 
                    { field:'address' ,title:' ที่อยู่ผู้บริจาค ' }, 
                
                ]]
@@ -220,7 +222,12 @@
                <label  for="edit_date_donation"    >
                     วัน-เดือน-ปี :
                </label>
-                <input class="easyui-datebox"  id="edit_date_donation"  style="width: 120px;height: 40px;"      /> 
+                <input class="easyui-datebox"  id="edit_date_donation"  style="width: 120px;height: 40px;"  
+                       data-options=" 
+                        
+                       
+                       "
+                       /> 
            </div>
            
            
