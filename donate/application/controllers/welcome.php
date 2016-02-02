@@ -237,6 +237,24 @@ LIMIT 0 , 30
              }
             echo  json_encode($rows);
         }
+        
+        public  function  amount_donate_caculate()
+        {
+            # http://10.87.196.113/donate/index.php/welcome/amount_donate/500
+            //$am=500;
+                  $ck=$this->session->userdata('sess_status_login'); 
+               $this->authentication->check_authentication($ck);
+            $am=$this->uri->segment(3);
+            $tb="donation";
+            $str=" select  *  from  $tb   where   amount  >=  $am    ; ";
+            $query=$this->db->query($str);
+             foreach($query->result() as $row )
+             {
+                 $rows[]=$row;
+             }
+            echo  json_encode($rows);
+        }
+        
         public function tax_donate()
         {
            // http://10.87.196.113/donate/index.php/welcome/tax_donate/1

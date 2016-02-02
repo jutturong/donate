@@ -112,7 +112,7 @@
                    จำนวนเงินบริจาค :
                </td>
                <td>
-                   <input class="easyui-numberbox"   style="width:130px;height: 30px"  id="amount"  data-options=" 
+                   <input class="easyui-numberbox"   style="width:100px;height: 50px"  id="amount"  data-options=" 
                           iconCls:'icon-cut',
                           min:0,
                           precision:2,
@@ -125,6 +125,15 @@
                                  $('#tb_donation').datagrid('load','<?=base_url()?>index.php/welcome/amount_donate/'  +  amount    );
                          },
                           "   />
+                   
+                   <a href="javascript:void(0)"  style="width:50px;height: 40px;"  class="easyui-linkbutton"  
+                      onclick="    
+                                           var    amount=$('#amount').numberbox('getValue');
+                                           //$.messager.alert(amount);
+                                           //amount_donate_caculate
+                                           $('#dg_donation').panel('open');
+                                           $('#tb_donation').datagrid('load','<?=base_url()?>index.php/welcome/amount_donate_caculate/'  +  amount    );
+                                    "   > (>=) </a>
                    
                </td>
            </tr>
