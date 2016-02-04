@@ -48,9 +48,9 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-$db['default']['hostname'] = '10.87.196.210';
-$db['default']['username'] = 'finan';
-$db['default']['password'] = 'his_trial';
+$db['default']['hostname'] = 'localhost';
+$db['default']['username'] = 'root';
+$db['default']['password'] = '';
 $db['default']['database'] = 'financial_donation';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';

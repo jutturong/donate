@@ -255,6 +255,23 @@ LIMIT 0 , 30
             echo  json_encode($rows);
         }
         
+        public  function  amount_donate_caculate2()
+        {
+            # http://10.87.196.113/donate/index.php/welcome/amount_donate/500
+            //$am=500;
+                  $ck=$this->session->userdata('sess_status_login'); 
+               $this->authentication->check_authentication($ck);
+            $am=$this->uri->segment(3);
+            $tb="donation";
+            $str=" select  *  from  $tb   where   amount  <=  $am    ; ";
+            $query=$this->db->query($str);
+             foreach($query->result() as $row )
+             {
+                 $rows[]=$row;
+             }
+            echo  json_encode($rows);
+        }
+        
         public function tax_donate()
         {
            // http://10.87.196.113/donate/index.php/welcome/tax_donate/1
@@ -403,6 +420,26 @@ LIMIT 0 , 30
                                 $rows[]=$row;
                       }
                        echo  json_encode($rows);
+        }
+        
+        public  function  sum_donate()
+        {
+               //http://10.87.196.113/donate/index.php/welcome/sum_donate    
+                       $tb="donation";
+                     // $this->db->select_sum("amount");
+                     //  $query=$this->db->get($tb);
+                     //  $date_donation_begin="2014-07-26";
+                      $date_donation_begin=$this->uri->segment(3);
+                      $date_donation_end="2016-07-26";
+                    //   $date_donation_end=$this->uri->segment(4);
+                      $query=$this->db->query("  select  sum(amount)  as  couse  from  $tb  where   date_donation   between  '$date_donation_begin'  and  '$date_donation_end'  ;      "); 
+                       foreach($query->result() as $row )
+                       {
+                          // $rows[]=$row;
+                           echo $row->couse;
+                       }
+                      // echo json_encode($rows);
+            
         }
         
 }

@@ -34,7 +34,7 @@
          ]
          "
          title=" ค้นหาชื่อรายนามผู้บริจาค "
-         style=" width:500px;height: 300px; padding: 10px 10;left:100;top:70"
+         style=" width:550px;height: 300px; padding: 10px 10;left:100;top:70"
          >
        
     
@@ -105,8 +105,37 @@
                                between_search();
                           }
                           " />
+                   
+                   <a  href="javascript:void(0)"  class="easyui-linkbutton"  onclick="
+                              // $.messager.alert('test',' ','Info');
+                              var   date_donation_begin=$('#date_donation_begin').datebox('getValue');
+                              var  sp1=date_donation_begin.split('/');
+                              var  a=sp1[2]+'-'+sp1[0]+'-'+sp1[1];
+                             // alert(a);
+                              var   date_donation_end=$('#date_donation_end').datebox('getValue');
+                              var  sp2=date_donation_end.split('/');
+                              var  b=sp2[2]+'-'+sp2[0]+'-'+sp2[1];
+                                //$('#dg_donation').panel('open');
+                             //   $('#tb_donation').datagrid('load','<?=base_url()?>index.php/welcome/sum_donate /'  +  a + '/'  +  b );
+                                var  url='<?=base_url()?>index.php/welcome/sum_donate/'  +  a  +  '/'  +  b;
+                              // alert(url);
+                              $.post(url,function(data)
+                              { 
+                                    //alert(data);
+                                    $.messager.alert(' แสดงสถานะของจำนวนเงินบริจาค ',  'จำนวนเงินทั้งหมด  = '  + data  +  ' บาท  '  , 'Info');
+                               });
+                               
+                       "  >
+                       SUM
+                   </a>
+                   
+                   
                </td>
            </tr>
+           
+           
+           
+           
            <tr>
                <td>
                    จำนวนเงินบริจาค :
@@ -134,6 +163,12 @@
                                            $('#dg_donation').panel('open');
                                            $('#tb_donation').datagrid('load','<?=base_url()?>index.php/welcome/amount_donate_caculate/'  +  amount    );
                                     "   > (>=) </a>
+                   
+                   <a href="javascript:void(0)"   class="easyui-linkbutton"  style="width:50px;height: 40px;"   onclick="
+                         var    amount=$('#amount').numberbox('getValue');
+                         $('#dg_donation').panel('open');
+                          $('#tb_donation').datagrid('load','<?=base_url()?>index.php/welcome/amount_donate_caculate2/'  +  amount    );
+                      "  >(<=)</a>
                    
                </td>
            </tr>
