@@ -22,6 +22,9 @@ function sigout()
         <a href="#" class="easyui-menubutton" data-options="menu:'#mm1',iconCls:'icon-edit'"> เพิ่มข้อมูล </a>
         <a href="#" class="easyui-menubutton" data-options="menu:'#mm2',iconCls:'icon-reload'">Administrator</a>
       <!-- <a href="#" class="easyui-menubutton" data-options="menu:'#mm3'">เกี่ยวกับการบริจาค</a> -->
+      
+      <a href="javascript:void(0)"  class="easyui-menubutton"   data-options="  menu:'#menu_upload'  ,  iconCls:'icon-save'  "    >Upload File</a>
+      
         <a href="javascript:void(0)"  class="easyui-linkbutton"  data-options=" iconCls:'icon-cancel'  ,plain:true  "   onclick=" sigout() "   > Sign Out </a>
     </div>
     <div id="mm1" style="width:150px;">
@@ -30,6 +33,9 @@ function sigout()
         <div data-options="iconCls:'icon-redo'">Redo</div>
         <div class="menu-sep"></div>
         -->
+        
+       
+        
         <div data-options=" iconCls:'icon-man'  "  onclick="$('#dia_donate').dialog('open')" >เพิ่มรายนามผู้บริจาค</div>
         <div class="menu-sep"></div>
         <div data-options=" iconCls:'icon-search'  "   onclick=" $('#win_search').dialog('open');  "  >ค้นหา</div>
@@ -65,5 +71,11 @@ function sigout()
         <p style="font-size:14px;color:#444;">Try jQuery EasyUI to build your modern, interactive, javascript applications.</p>
         -->
     </div>
+
+<div id="menu_upload"   class="menu-content"   style="background:#f0f0f0;">
+    <div data-options=" iconCls:'icon-add' "   class="easyui-menubutton"  onclick="  $('#dia_upload').dialog('open');  /*$('#pa_expand').panel('close');*/  "     >upload file</div>
+    <div data-options=" iconCls:'icon-add'  "   class="easyui-menubutton"    onclick=" /*$('#dia_upload').dialog('close');*/   $('#p_upload').panel('open');    " >Expand File</div>
+</div>
+
 
 

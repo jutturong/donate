@@ -10,6 +10,8 @@ class Welcome extends CI_Controller {
                         // Call the Model constructor
                           parent::__construct();
                           $this->load->model('authentication');
+                          $this->load->helper('file');
+                          $this->load->helper('directory');
                     }
                     
                     
@@ -440,6 +442,68 @@ LIMIT 0 , 30
                        }
                       // echo json_encode($rows);
             
+        }
+        
+        public function  uploadfile1()
+        {
+               //http://10.87.196.113/donate/index.php/welcome/uploadfile1 
+                 $file1name = $_FILES['file_upload1']['name'];
+                $file1tmp  =$_FILES['file_upload1']["tmp_name"]; // tmp folder
+               $file1Type= $_FILES['file_upload1']["type"]; //type of file
+               $file1Size= $_FILES['file_upload1']["size"]; //size
+               $file1ErrorMsg = $_FILES['file_upload1']["error"]; // 0=false 1=true
+
+                /*
+                     $fp = fopen($_FILES["file1"]["tmp_name"],"r");  
+    $ReadBinary = fread($fp,filesize($_FILES["file1"]["tmp_name"]));
+    $FileData = addslashes($ReadBinary);
+                 */
+
+                 $cp1=copy($file1tmp ,  "uploadfile/". $file1name );
+                if( $cp1 )
+                {
+                    echo "success";
+                }
+                else
+                {
+                     echo "false";
+                }
+
+        }
+        
+        public function   tree_fileupload()
+        {
+             //http://10.87.196.113/donate/index.php/welcome/tree_fileupload 
+            /*
+                    $result=array();
+                    $node=array();
+                    
+                    $node['file1']='text1.txt';
+                    $node['file2']='text2.txt';
+                    array_push($result,$node);
+                    echo json_encode($result);
+             * 
+             */
+            
+            $path="uploadfile/";
+            $d=dir($path);
+            
+            $rows=array();
+            $node=array();
+            while( false !==  ($entry=$d->read()))
+            {
+                if( !file_exists($entry))
+                {
+                    //echo $entry;
+                   // echo "<br>";
+                    $node['name']=$entry;
+                    array_push($rows,$node);
+                }
+                
+            }
+            echo json_encode($rows);
+            //$d->close();
+
         }
         
 }
