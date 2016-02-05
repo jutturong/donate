@@ -31,7 +31,7 @@
      iconCls:'icon-edit'
      "   style="width:500px;height: 400px;padding: 10px;left:10px;top: 10px"  >
     
-    <table id="dg_upload"  class="easyui-datagrid" data-options="
+    <table id="dg_upload"  class="easyui-datalist" data-options="
            url:'<?=base_url()?>index.php/welcome/tree_fileupload',
            fitColumns:true,
            rownumbers:true,
@@ -52,7 +52,7 @@
                       }  
           },
           {
-              text:'Upload File',iconCls:'icon-edit' ,handler:function()
+              text:'Upload File',iconCls:'icon-add' ,handler:function()
                    {  
                        // alert('test');
                        $('#dia_upload').dialog('open');
