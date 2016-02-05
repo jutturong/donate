@@ -506,6 +506,32 @@ LIMIT 0 , 30
 
         }
         
+        public  function  del_dir()
+        {
+              //http://10.87.196.113/donate/index.php/welcome/del_dir
+            
+            /*
+             $path="uploadfile/";
+             $file="hulk1.jpg";
+              unlink($path.$file);
+            */
+            
+            $name=$this->input->get_post("name");
+           if( strlen($name) > 0 )
+           {
+               $path="uploadfile/";
+               $del=unlink($path.$name);
+               if( $del )
+               {
+                   echo "true";
+               }else
+               {
+                   echo "false";
+               }
+           }
+           
+        }
+        
 }
 
 /* End of file welcome.php */

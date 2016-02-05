@@ -57,6 +57,35 @@
                        // alert('test');
                        $('#dia_upload').dialog('open');
                    }
+          },
+          {
+             text:'Reload',iconCls:'icon-reload',handler:function()
+             {
+                   $('#dg_upload').datagrid('reload');
+             }
+          },
+          {
+             text:'Delete',iconCls:'icon-cancel',handler:function()
+             {
+                    var   row=$('#dg_upload').datagrid('getSelected');
+                    if( row )
+                    {
+                         var  name_dir=row.name;
+                         $.post('<?=base_url()?>index.php/welcome/del_dir/',{  name:name_dir  },function(data)
+                         { 
+                             //alert(data);  
+                             if( data=='true' )
+                             {
+                                    $('#dg_upload').datagrid('reload');
+                                    $.messager.alert('สถานะการลบข้อมูล','ลบข้อมูลแล้ว','Info');
+                             }
+                             else
+                             {
+                                   $.messager.alert('สถานะการลบข้อมูล','ไม่สามารถลบข้อมูลได้','Error');
+                             }
+                         });
+                    }
+             }
           }
           ]
            " >
