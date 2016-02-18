@@ -87,7 +87,7 @@
 
 <div style="margin:20px 0 10px 0;"></div>
 
-    <div class="easyui-panel"  id="dg_donation" title="รายนามทั้งหมดของผู้บริจาค" style="width:800px;height:520px;padding:10px;"
+    <div class="easyui-panel"  id="dg_donation" title="รายนามทั้งหมดของผู้บริจาค" style="width:850px;height:520px;padding:10px;"
             data-options="iconCls:'icon-man',
             closable:true,  
             closed:true, 
@@ -117,8 +117,10 @@
                { 
                    var  ck= row.id_donation % 2
                   // if( row.id_donation > 5 )
+                  /*
                     if( ck == 0 )
                    { return 'background-color:#6293BB;color:#fff;'; } 
+                   */
                },
                columns:[[      
                  //  {  field:'id_donation',title:'ID'  },
@@ -129,8 +131,8 @@
                    {  field:'amount' ,title:' จำนวนบริจาค ' },
                    {  field:'date_donation', title:' ปี/เดือน/วัน ที่บริจาค ' },
                    {  field:'tax', title:' รูปแบบการบริจาค ' },
-                 
-                   { field:'address' ,title:' ที่อยู่ผู้บริจาค ' }, 
+                   { field:'address' ,title:' ที่อยู่ผู้บริจาค ' },
+                   {  field:'fileupload1' ,title:'ชื่อไฟล์แนบ'  },
                
                ]]
                ">
@@ -155,6 +157,14 @@
 
 
 <div id="tool_donate" >
+    <a href="javascript:void(0)" class="icon-print"  data-options="iconAlign:'top' "  onclick="
+     var  row=   $('#tb_donation').datagrid('getSelected');
+            if( row )
+            {
+                // alert( row.filename );    
+                 window.open('<?=base_url()?>uploadfile/' + row.filename);
+            }
+       "></a>  
     <a href="javascript:void(0)" class="icon-search"  data-options="iconAlign:'top' "  onclick="$('#win_search').window('open');"></a>  
     <a href="javascript:void(0)" class="icon-reload"  data-options="iconAlign:'top' "  onclick="reload_danation()"></a>
     <a href="javascript:void(0)" class="icon-add"  data-options="iconAlign:'top' "  onclick="$('#dia_donate').dialog('open')"></a>

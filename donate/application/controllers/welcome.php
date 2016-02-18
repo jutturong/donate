@@ -9,6 +9,7 @@ class Welcome extends CI_Controller {
                     {
                         // Call the Model constructor
                           parent::__construct();
+                          $this->load->helper('date');
                           $this->load->model('authentication');
                           $this->load->helper('file');
                           $this->load->helper('directory');
@@ -117,6 +118,7 @@ class Welcome extends CI_Controller {
                $ck=$this->session->userdata('sess_status_login'); 
                $this->authentication->check_authentication($ck);
                  $q = isset($_POST['q']) ? $_POST['q'] : '';  // the request parameter
+               //$q=trim($this->input->get_post("q"));
                  
              $tb="donation";
              
@@ -124,8 +126,13 @@ class Welcome extends CI_Controller {
              
              // $name=trim($this->uri->segment(3));
            
-             $this->db->like("name_donation",$q );
-             $query=$this->db->get($tb);     
+             /*
+              $this->db->like("name_donation",$q );
+             $query=$this->db->get($tb);   
+            */
+             
+              $query=$this->db->query("  select  *   from   $tb  where  `name_donation`  like('%$q%');   ");
+             
               foreach($query->result() as $row)
               {
                   $rows[]=$row;
@@ -167,14 +174,27 @@ class Welcome extends CI_Controller {
                }
            }
         }
+        
+        public function  call_tb_donate()
+        {
+            // http://10.87.196.113/donate/index.php/welcome/call_tb_donate
+            $tb="donation";
+            $query=$this->db->get($tb);
+                    foreach($query->result() as $row)
+                    {
+                        $rows[]=$row;
+                    }
+                    echo json_encode($rows);
+        }
+        
         public function tb_donation() //table donation
         {
             # http://10.87.196.113/donate/index.php/welcome/tb_donation
             //$p = isset($_POST['page']) ? intval($_POST['page']) : 1;
             //$r = isset($_POST['rows']) ? intval($_POST['rows']) : 10;
             
-               $ck=$this->session->userdata('sess_status_login'); 
-               $this->authentication->check_authentication($ck);
+             //  $ck=$this->session->userdata('sess_status_login'); 
+             //  $this->authentication->check_authentication($ck);
               $tb="donation";
               
               /*
@@ -184,15 +204,16 @@ class Welcome extends CI_Controller {
            */
 
              
-              $this->db->limit(  $this->limit  );
-               $this->db->order_by("id_donation","DESC");
-               $query=$this->db->get($tb);     
-               
-              foreach($query->result() as $row)
-              {
-                  $rows[]=$row;
-              }
-              echo json_encode($rows);
+            //  $this->db->limit(  $this->limit  );
+            //   $this->db->order_by("id_donation","DESC");
+             //  $query=$this->db->get($tb);     
+              $this->db->order_by("id_donation","DESC");
+              $query=$this->db->get($tb,10,0);
+                    foreach($query->result() as $row)
+                    {
+                       $rows[]=$row;
+                    }
+                    echo json_encode($rows);
         }
         public  function  date_donate() //วันที่บริจาค
         {
@@ -346,6 +367,7 @@ LIMIT 0 , 30
         public function  insert_donate()
         {
              //http://10.87.196.113/donate/index.php/welcome/insert_donate
+          //    echo  "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">";
                  $name_donation=trim($this->input->get_post("name_donation"));
                 $lastname_donation=trim($this->input->get_post("lastname_donation"));
                   $date_donation=trim($this->input->get_post("date_donation"));
@@ -360,7 +382,44 @@ LIMIT 0 , 30
                      $num2=trim($this->input->get_post("num2"));
                    $amount=trim($this->input->get_post("amount"));
                    $address=trim($this->input->get_post("address"));
-                    
+                   
+                   
+               $file1name = $_FILES['file1']['name'];
+             
+                    $chg_name=mdate( "%h:%i:%s" );
+                   
+         //  $file1name =   iconv("utf-8", "UTF-8",  $file1name );
+              $dater =  mdate( "%Y%m%d" );
+             //  echo  $iconv;
+                
+                $file1tmp  =$_FILES['file1']["tmp_name"]; // tmp folder
+               $file1Type= $_FILES['file1']["type"]; //type of file
+               $file1Size= $_FILES['file1']["size"]; //size
+               $file1ErrorMsg = $_FILES['file1']["error"]; // 0=false 1=true
+               
+               
+               $rand1=  $dater.rand().".docx";
+                
+                $cp1=copy($file1tmp ,  "uploadfile/".  $file1name );
+                /*
+                $fp = fopen(   $file1tmp ,"r");  
+               $ReadBinary = fread($fp,filesize($_FILES["file1"]["tmp_name"]));
+              $FileData = addslashes($ReadBinary);
+                */
+                 
+                
+                /*
+                if( $cp1 )
+                {
+                    echo "success";
+                }
+                else
+                {
+                     echo "false";
+                }
+                   */
+          
+              
                      $tb="donation";
                      $this->db->set("name_donation",$name_donation);
                       $this->db->set("lastname_donation",$lastname_donation);
@@ -370,15 +429,57 @@ LIMIT 0 , 30
                       $this->db->set("num2",$num2);
                       $this->db->set("amount",$amount);
                       $this->db->set("address",$address);
+                    //  $this->db->set("fileupload1",  $FileData );   
+           
+                      
                       $ck=  $this->db->insert($tb);
-                    if( $ck )
-                    {
-                        echo "บันทึกสำเร็จ";
-                    }
-                    elseif( $ck )
-                    {
-                        echo "บันทึกไม่ล้มเหลว";
-                    }
+                                if( $ck    )
+                                {
+                                    echo "บันทึกสำเร็จ";
+                                }
+                                elseif( $ck )
+                                {
+                                    echo "บันทึกไม่ล้มเหลว";
+                                }
+                
+                          
+        }
+        
+        public function downloadfile1()
+        {
+            //      http://10.87.196.113/donate/index.php/welcome/downloadfile1/ลดหย่อน (บริจาครายการผู้หญิงถึงผู้ญิง 3).doc
+           // $file=$this->uri->segment(3);
+            /*
+             header("Content-type: ".$data->MIME);
+              ibase_blob_echo ($data->IMAGEDATA); 
+             * 
+             */
+            
+            $tb="donation";
+            $file="ลดหย่อน (บริจาครายการผู้หญิงถึงผู้ญิง 3).doc";
+            
+            $query=$this->db->get_where($tb,array("fileupload1"=>$file));
+           // echo " <meta charset=\"UTF-8\"> ";
+            echo  "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">";
+           // foreach($query->result($query,PDO::FETCH_ASSOC) as $row)
+             foreach($query->result() as $row)
+            {
+              
+              echo   $f_name1=$row->fileupload1;
+                // header("Content-type: ". $f_name1 );
+              //  header("Content-Disposition: attachment; filename=$f_name1");
+               // header("Content-type: application/filename");
+               //  header("Content-type: application/vnd.ms-word");
+              //   header("Content-Disposition: attachment; filename=testing.doc");
+               //  '<img src="data:image/jpeg;base64,'.base64_encode(  $f_name1  ).'"/>';
+               
+               //   header("Content-Length: $size");
+              //    header("Content-Type: $type");
+                //  header("Content-Disposition: attachment; filename=\"$f_name1\"");
+                  
+            }
+           
+            
         }
         
         public function  tb_user()
@@ -397,7 +498,7 @@ LIMIT 0 , 30
         
         public function  autocomp_donate()
         {
-            //http://10.87.196.113/donate/index.php/welcome/grid_donate
+            //http://10.87.196.113/donate/index.php/welcome/autocomp_donate
              $tb="donation";
              //$name_donation=$this->input->get_post("name_donation");
               $q = isset($_POST['q']) ? $_POST['q'] : ''; 

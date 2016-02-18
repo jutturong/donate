@@ -48,6 +48,7 @@
                    
                                     <input class="easyui-combobox"  style="width: 200px;height: 30px"  id="sr_name"  data-options="
                                                 url:'<?=base_url()?>index.php/welcome/serch_donation/'  ,
+                                                method:'get',
                                                 valueField:'id_donation',
                                                 textField:'name_donation',
                                                 onSelect:function()

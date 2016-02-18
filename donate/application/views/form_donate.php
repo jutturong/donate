@@ -6,34 +6,44 @@
                         {  
                              //alert(data);   
                               $.messager.alert('สถานะการบันทึกข้อมูล',data,'info');
+                              $('#sub_search').combobox('reload');
                               $('#dg_donation').panel('open');
-                               $('#tb_donation').datagrid('load','<?=base_url()?>index.php/welcome/tb_donation/'  );
+                              $('#tb_donation').datagrid('load','<?=base_url()?>index.php/welcome/tb_donation/'  );
                         }
                  });
-     }    
+     }  
+     
+     function  clear_fr()
+     {
+           //alert('t');    
+          $('#name_donation').textbox("clear");
+          $('#lastname_donation').textbox("clear");
+          $('#sub_search').combobox('reload');
+      }
+     
 </script>
 
 
 <!--  เพิ่มผู้บริจาค  -->
-<div style="padding: 300px 100"></div>
+<div style="padding: 300px 100px;"></div>
     
    <div  style="padding: 10px 10px" ></div>
    
-    <div class="easyui-dialog"  id="dia_donate" style="width:600px;height: 500px;"  title=" เพิ่มข้อมูลผู้บริจาค"  data-options=" 
+    <div class="easyui-dialog"  id="dia_donate" style="width:600px;height: 500px;left:10px;top:10px;"  title=" เพิ่มข้อมูลผู้บริจาค"  data-options=" 
         iconCls:'icon-man',
-        modal:true,
+        modal:false,
         closed:true,
         
       "  >
    
   
-     <form id="donate_submit"   action="<?=base_url()?>index.php/welcome/insert_donate" method="post" enctype="multipart/form-data"   >
+     <form id="donate_submit"  accept-charset="utf-8"   action="<?=base_url()?>index.php/welcome/insert_donate" method="post" enctype="multipart/form-data"   >
          
          <div style="margin: 10px 50px">
              ค้นหาชื่อผู้ที่เคยบริจาค :
              
              
-                 <input class="easyui-combobox"  style="width: 200px;height: 40px;"    data-options="
+                 <input class="easyui-combobox" id="sub_search"  style="width: 200px;height: 40px;"    data-options="
                                                 url:'<?=base_url()?>index.php/welcome/autocomp_donate'  ,
                                                 method:'post',    
                                                 valueField:'id_donation',
@@ -137,9 +147,17 @@
                     "     />
          </div>
          
-      <div style="margin:10px  140  0px  ">
-          <a   href="javascript:void(0)"  class="easyui-linkbutton"  style="width: 100px;height: 50"  onclick="submit_donate()"  id=" btn_donate "  data-options=" iconCls:'icon-man' , plain:false ,  "  >บันทึก</a>
-          <a   href="javascript:void(0)"  class="easyui-linkbutton"  style="width: 100px;height: 50"  onclick=" $('#dia_donate').dialog('close') "  data-options=" iconCls:'icon-cancel' , plain:false "  >Close</a>
+         <div style="margin:10px   50px  ">
+             Upload File :
+             <input class="easyui-filebox"  id="file1"  name="file1"  prompt=" เลือกไฟล์ " style="width:270px;height: 40px"    />
+         </div>
+         
+      <div style="margin:10px  100px  ">
+       
+          <a   href="javascript:void(0)"  class="easyui-linkbutton"  style="width: 100px;height: 50px"  onclick="submit_donate()"  id=" btn_donate "  data-options=" iconCls:'icon-man' , plain:false ,  "  >บันทึก</a>
+          <a   href="javascript:void(0)"  class="easyui-linkbutton"  style="width: 100px;height: 50px"  onclick=" $('#dia_donate').dialog('close') "  data-options=" iconCls:'icon-cancel' , plain:false "  >Close</a>
+          <a href="javascript:void(0)"   class="easyui-linkbutton"  style="width: 100px;height: 50px"   onclick="  clear_fr()  "    data-options="  iconCls:'icon-back'  "  >Clear</a>
+          
       </div>
          
     </form> 
