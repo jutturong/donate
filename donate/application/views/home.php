@@ -7,14 +7,59 @@
     <?=$this->load->view("import_")?>
 
     
-    
+    <script type="text/javascript"  >
+        
+         function  loadhbd()
+         {
+                var  url="<?=base_url()?>index.php/welcome/hbd";
+                $.getJSON(url,function(data)
+                     {
+                         
+                         
+                           $.each(data,function(v,k)
+                               {
+                                        var   	name_donation=k.name_donation;
+                                        var    lastname_donation=k.lastname_donation;
+                                        var    id_donation=k.id_donation;
+                                        var    email=k.email;
+                                        
+                                        
+                            //-----------------------------------------------------------------     
+                              if(   name_donation.length > 0  &&  lastname_donation.length > 0  )
+                              {    
+                                    //$('#name_donation_hbd').textbox('setValue', name_donation );
+                                      //alert(  	name_donation  );
+                                      
+                                      /*
+                                       $.messager.confirm(" Happy Birth Day "," ส่ง E-Card อวยพรวันเกิดกด  ok " ,  function(r)
+                                           {    
+                                                      if( r )
+                                                            {
+                                                                       alert(  email  );   
+                                                             }
+                                                     
+                                            }  );
+                                         */
+                                        
+                                        $.messager.alert("Happy Birth Date ","  วันนี้มีวันเกิดของ   "   +   name_donation  +  "   "  +    lastname_donation   +  "  ระบบได้ทำการส่ง E-card แบบอัตโนมัติแล้ว  "  ,"Info");
+                                            
+                                }      
+                              //------------------------------------------------------------------------
+                                          
+                                });
+                                
+                      }
+                );
+         }
+    </script>   
     
 </head>
 
 
 
-<body>
-   
+<body  onload=" loadhbd() ">
+
+
    
 
     
@@ -39,7 +84,7 @@
            columns:[[
            {  field:'name',title:' File upload ',   }
            ]],
-          toolbar:[   
+          toolbar:[ 
           {   text:'Download file'  , iconCls:'icon-save' ,handler:function()
                       {   
                          var   row=$('#dg_upload').datagrid('getSelected');

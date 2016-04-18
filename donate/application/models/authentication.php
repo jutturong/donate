@@ -38,9 +38,17 @@ class  Authentication  extends CI_Model {
          {
                    redirect('welcome/');
          }
-         
-        
-        
     }
+    
+    function  conv_date($dmy)// change  date format  y-m-d
+    {
+        if( strlen($dmy) > 0 )
+        {
+            //echo "T";
+            $ex=explode("/",$dmy);
+            return  $ex[2]."-".$ex[0]."-".$ex[1]; 
+        }
+    }
+    
 }
 ?>
