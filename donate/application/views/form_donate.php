@@ -20,7 +20,9 @@
           $('#lastname_donation').textbox("clear");
          $('#amount').textbox("setValue","");
           //$('#address').textbox("setValue","");
-          $('#sub_search').combobox('reload');
+          $('#sub_search').combobox('setValue','');
+          
+          
       }
      
 </script>
@@ -47,7 +49,7 @@
              
                  <input class="easyui-combobox" id="sub_search"  style="width: 200px;height: 40px;"    data-options="
                                                 url:'<?=base_url()?>index.php/welcome/autocomp_donate'  ,
-                                                method:'post',    
+                                                method:'get',    
                                                 valueField:'id_donation',
                                                 textField:'name_donation',
                                                 panelHeight:'auto',
@@ -60,8 +62,8 @@
                                                           $('#name_donation').textbox('setValue',name);
                                                           $('#lastname_donation').textbox('setValue',lastname);
                                                           var  address=data.address;
-                                                          alert(address);
-                                                         $('#address').textbox('setValue',  ' test '); 
+                                                         // alert(address);
+                                                         $('#address').textbox('setValue',  address  ); 
                                                     }
                                             "
                                             />

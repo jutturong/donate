@@ -47,10 +47,27 @@
 
 $active_group = 'default';
 $active_record = TRUE;
+// http://10.87.196.210/phpmyadmin/
+//U: root
+//P: his_trial
+//  financial_donation
+/*
+ U: finan
+P: tawanchai
+ */
 
+
+$db['default']['hostname'] = '10.87.196.210';
+$db['default']['username'] = 'client1';
+$db['default']['password'] = '1234';
+
+
+/*
 $db['default']['hostname'] = 'localhost';
 $db['default']['username'] = 'root';
 $db['default']['password'] = '1234';
+*/
+
 $db['default']['database'] = 'financial_donation';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
