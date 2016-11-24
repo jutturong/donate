@@ -150,6 +150,7 @@
                    { return 'background-color:#6293BB;color:#fff;'; } 
                    */
                },
+               
                columns:[[      
                  //  {  field:'id_donation',title:'ID'  },
                //    { field:'num1' ,title:' เล่มที่ ' }, 
@@ -185,18 +186,6 @@
 
 
 <div id="tool_donate" >
-    <a href="javascript:void(0)"  class="icon-large-clipart"   onclick=" 
-       // alert('t');  
-               var  row=$('#tb_donation').datagrid('getSelected');
-              if( row )
-              {
-                   var  id_donation=row.id_donation;
-                   // alert( id_donation );
-                   var   url='<?=base_url()?>report_pdf/donate/report_case2.php?id=' +   id_donation  ;
-                   // alert( url );
-                    window.open(url);
-              }
-       "   ></a>
     <a href="javascript:void(0)"  class="icon-back"  onclick=" 
        // alert('t');   
               var  row=$('#tb_donation').datagrid('getSelected');
@@ -226,7 +215,6 @@
                         });
               }
        "  ></a>
-
     <a href="javascript:void(0)" class="icon-man"  onclick=" 
         //alert('t'); 
                 $.messager.alert('สถานะการจัดลำดับข้อมูล',' เรียงลำดับข้อมูลตาม ลำดับการบันทึก ','Info');
@@ -262,13 +250,11 @@
                  window.open('<?=base_url()?>uploadfile/' + row.filename );
             }
        "></a>  
-    
     <a href="javascript:void(0)" class="icon-search"  data-options="iconAlign:'top' "  onclick="$('#win_search').window('open');"></a>  
     <a href="javascript:void(0)" class="icon-reload"  data-options="iconAlign:'top' "  onclick="reload_danation()"></a>
     <a href="javascript:void(0)" class="icon-add"  data-options="iconAlign:'top' "  onclick="$('#dia_donate').dialog('open')"></a>
     <a href="javascript:void(0)" class="icon-edit"  data-options="  iconAlign:'top'  "  onclick=" edit_danate()  "  ></a>
     <a href="javascript:void(0)"  class="icon-cancel"   onclick="delete_donate()"></a>
-    <a href="javascript:void(0)"  class="icon-help"  onclick="  "  ></a>
       <!--
         <a href="javascript:void(0)" class="icon-add" onclick="javascript:alert('add')"></a>
         <a href="javascript:void(0)" class="icon-edit" onclick="javascript:alert('edit')"></a>

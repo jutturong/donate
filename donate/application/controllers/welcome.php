@@ -4,10 +4,7 @@ class Welcome extends CI_Controller {
    
                 var   $title=" .:: โปรแกรมรายนามผู้บริจาคศูนย์ตะวันฉาย ::. ";
                 var   $limit=15;
-              //  var   $tb_main="donation";
-                //donation_billing
-                var   $tb_main="donation_billing";
-                var   $tb_sub="donation";
+                var   $tb_main="donation";
                 
                     function __construct()
                     {
@@ -41,8 +38,7 @@ class Welcome extends CI_Controller {
         public function hbd()  //check  วัน-เดือน-ปี เกิด
         {
            // http://10.87.196.113/donate/index.php/welcome/hbd
-                 //   $tb="donation";
-                    $tb=$this->tb_main;
+                    $tb="donation";
                     $bd= date("Y-m-d");  //2014-07-26
                //    $bd="2014-07-26";
                    // echo "<br>";
@@ -86,8 +82,7 @@ class Welcome extends CI_Controller {
                
                             $data["title"]=$this->title;
                             
-            //  $tb="donation";
-                    $tb=$this->tb_main;
+              $tb="donation";
               $all=$this->db->query("select  *  from  $tb");
             //  $count= $all->num_rows();
             // echo  $data["maxpage"]= ceil( $count/10  );
@@ -113,8 +108,7 @@ class Welcome extends CI_Controller {
             $limit=$this->limit;
             $cal=($p - 1 )*$limit;
             
-             // $tb="donation";
-            $tb=$this->tb_main;
+              $tb="donation";
               $all=$this->db->query("select  *  from  $tb");
               $count= $all->num_rows();
               
@@ -149,8 +143,7 @@ class Welcome extends CI_Controller {
                  $q = isset($_POST['q']) ? $_POST['q'] : '';  // the request parameter
                //$q=trim($this->input->get_post("q"));
                  
-           //  $tb="donation";
-                 $tb=$this->tb_main;
+             $tb="donation";
              
              //$this->db->limit(  $this->limit  );
              
@@ -174,8 +167,7 @@ class Welcome extends CI_Controller {
             # http://10.87.196.113/donate/index.php/welcome/search_by_name
                   $ck=$this->session->userdata('sess_status_login'); 
                $this->authentication->check_authentication($ck);
-           // $tb="donation";
-            $tb=$this->tb_main;
+            $tb="donation";
           //  $this->db->like("","");
              $this->db->limit(  $this->limit  );
              $id_donation=$this->uri->segment(3);
@@ -190,8 +182,7 @@ class Welcome extends CI_Controller {
         public function del_donation()
         {
              # http://10.87.196.113/donate/index.php/welcome/del_donation/69
-            //$tb="donation";
-             $tb=$this->tb_main;
+            $tb="donation";
            $id=$this->uri->segment(3);
            if( $id > 0 )
            {
@@ -210,8 +201,7 @@ class Welcome extends CI_Controller {
         public function  call_tb_donate()
         {
             // http://10.87.196.113/donate/index.php/welcome/call_tb_donate
-          //  $tb="donation";
-             $tb=$this->tb_main;
+            $tb="donation";
             $query=$this->db->get($tb);
                     foreach($query->result() as $row)
                     {
@@ -223,8 +213,7 @@ class Welcome extends CI_Controller {
         public  function  edit_donate()
         {
             // http://10.87.196.113/donate/index.php/welcome/edit_donate
-             //  $tb="donation";
-             $tb=$this->tb_main;
+               $tb="donation";
                  $id_donation=trim($this->input->get_post("id_donation"));
                 //echo "<br>";
              $edit_num1=trim($this->input->get_post("edit_num1"));
@@ -278,8 +267,7 @@ class Welcome extends CI_Controller {
             
              //  $ck=$this->session->userdata('sess_status_login'); 
              //  $this->authentication->check_authentication($ck);
-             // $tb="donation";
-              $tb=$this->tb_main;
+              $tb="donation";
               
               /*
               $all=$this->db->query("select  *  from  $tb");
@@ -329,8 +317,8 @@ class Welcome extends CI_Controller {
             
              //  $ck=$this->session->userdata('sess_status_login'); 
              //  $this->authentication->check_authentication($ck);
-             // $tb="donation";
-               $tb=$this->tb_main;
+              $tb="donation";
+              
               /*
               $all=$this->db->query("select  *  from  $tb");
               $count= $all->num_rows();
@@ -342,7 +330,8 @@ class Welcome extends CI_Controller {
             //   $this->db->order_by("id_donation","DESC");
              //  $query=$this->db->get($tb);     
               $this->db->order_by("date_donation","DESC");
-              $query=$this->db->get($tb,20,0);
+             // $query=$this->db->get($tb,20,0);
+              $query=$this->db->get($tb);
                     foreach($query->result() as $row)
                     {
                        $rows[]=$row;
@@ -354,8 +343,7 @@ class Welcome extends CI_Controller {
             # http://10.87.196.113/donate/index.php/welcome/date_donate
                   $ck=$this->session->userdata('sess_status_login'); 
                $this->authentication->check_authentication($ck);
-             //$tb="donation";
-              $tb=$this->tb_main;
+             $tb="donation";
             // $d1="2014-01-15";
             // $d2="2016-12-19";
              
@@ -386,8 +374,7 @@ LIMIT 0 , 30
                   $ck=$this->session->userdata('sess_status_login'); 
                $this->authentication->check_authentication($ck);
             $am=$this->uri->segment(3);
-           // $tb="donation";
-             $tb=$this->tb_main;
+            $tb="donation";
             $str=" select  *  from  $tb   where   amount  =  $am    ; ";
             $query=$this->db->query($str);
              foreach($query->result() as $row )
@@ -404,8 +391,7 @@ LIMIT 0 , 30
                   $ck=$this->session->userdata('sess_status_login'); 
                $this->authentication->check_authentication($ck);
             $am=$this->uri->segment(3);
-            //$tb="donation";
-             $tb=$this->tb_main;
+            $tb="donation";
             $str=" select  *  from  $tb   where   amount  >=  $am    ; ";
             $query=$this->db->query($str);
              foreach($query->result() as $row )
@@ -422,8 +408,7 @@ LIMIT 0 , 30
                   $ck=$this->session->userdata('sess_status_login'); 
                $this->authentication->check_authentication($ck);
             $am=$this->uri->segment(3);
-            //$tb="donation";
-             $tb=$this->tb_main;
+            $tb="donation";
             $str=" select  *  from  $tb   where   amount  <=  $am    ; ";
             $query=$this->db->query($str);
              foreach($query->result() as $row )
@@ -453,8 +438,7 @@ LIMIT 0 , 30
                 
                     
                 }
-                              //  $tb="donation";
-                              $tb=$this->tb_main;
+                                $tb="donation";
                                 $str=" select  *  from  $tb   where   tax='$dtax'    ; ";
                                 $query=$this->db->query($str);
                                  foreach($query->result() as $row )
@@ -469,8 +453,7 @@ LIMIT 0 , 30
                //http://10.87.196.113/donate/index.php/welcome/cobo_address/
                $ck=$this->session->userdata('sess_status_login'); 
                $this->authentication->check_authentication($ck);
-              //$tb="donation";
-                $tb=$this->tb_main;
+              $tb="donation";
              $q = isset($_POST['q']) ? $_POST['q'] : '';  // the request parameter
               // $q = $this->input->get_post("q");
              // $str=" select  *  from  $tb    ; ";
@@ -491,8 +474,7 @@ LIMIT 0 , 30
             //http://10.87.196.113/donate/index.php/welcome/address/ก
                $ck=$this->session->userdata('sess_status_login'); 
                $this->authentication->check_authentication($ck);
-              //$tb="donation";
-                $tb=$this->tb_main;
+              $tb="donation";
               $id=$this->uri->segment(3);
            //   $str=" select  *  from  $tb   where  address  like('%$address%')  ; ";
               
@@ -510,13 +492,20 @@ LIMIT 0 , 30
              //http://10.87.196.113/donate/index.php/welcome/insert_donate
           //    echo  "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">";
                  $name_donation=trim($this->input->get_post("name_donation"));
+               
                 $lastname_donation=trim($this->input->get_post("lastname_donation"));
                   $date_donation=trim($this->input->get_post("date_donation"));
-                    if( strlen($date_donation) > 0 )
+                 
+                  //  if( strlen($date_donation) > 0 )
+                    if(   $date_donation != "" )
                     {
-                        $exd=explode("/",$date_donation);
-                        $dmyconv=  $exd[2]."-".$exd[0]."-".$exd[1];        
-                    }
+                      //   $exd=explode("/",$date_donation);
+                       // $dmyconv=  $exd[2]."-".$exd[0]."-".$exd[1];      
+                         //    $this->db->set("date_donation",$dmyconv);
+                        
+                           $this->db->set("date_donation",$date_donation);
+                        
+                     }
                     
                       $tax=trim($this->input->get_post("tax"));
                     $num1=trim($this->input->get_post("num1"));
@@ -529,10 +518,9 @@ LIMIT 0 , 30
              
                  
                    
-         //  $file1name =   iconv("utf-8", "UTF-8",  $file1name );
+      
               $dater =  mdate( "%Y%m%d" );
-            //  $dater=mdate( "%h:%i:%s" );
-             //  echo  $iconv;
+          
                 
                 $file1tmp  =$_FILES['file1']["tmp_name"]; // tmp folder
                $file1Type= $_FILES['file1']["type"]; //type of file
@@ -547,63 +535,63 @@ LIMIT 0 , 30
                 $cp1=copy($file1tmp ,  "uploadfile/".  $rand1  );
                }
                
-                /*
-                $fp = fopen(   $file1tmp ,"r");  
-               $ReadBinary = fread($fp,filesize($_FILES["file1"]["tmp_name"]));
-              $FileData = addslashes($ReadBinary);
-                */
-                 
-                
-                /*
-                if( $cp1 )
-                {
-                    echo "success";
-                }
-                else
-                {
-                     echo "false";
-                }
-                   */
+              
           
               
-                   //  $tb="donation";
-                    $tb=$this->tb_main;
-                     $this->db->set("name_donation",$name_donation);
-                      $this->db->set("lastname_donation",$lastname_donation);
+                   
+                                $this->db->set("name_donation",$name_donation);
+                                $this->db->set("lastname_donation",$lastname_donation);
+                      
+                       
+                                /*
                       if(  $date_donation  != "" )
                       {
-                      $this->db->set("date_donation",$dmyconv);
+                                 $this->db->set("date_donation",$dmyconv);
                       }
+                         */
+                                
                       
-                      $this->db->set("tax",$tax);
-                      $this->db->set("num1",$num1);
-                      $this->db->set("num2",$num2);
-                      $this->db->set("amount",$amount);
-                      $this->db->set("address",$address);
-                      $this->db->set("filename",  $rand1 );   
-           
-                   //   $q_ck= $this->db->get_where($tb,array("name_donation"=>$name_donation,"lastname_donation"=>$lastname_donation));
-                  //   $num_ck=  $q_ck->num_rows();
+                               $this->db->set("tax",$tax);
+                               $this->db->set("num1",$num1);
+                               $this->db->set("num2",$num2);
+                               $this->db->set("amount",$amount);
+                               $this->db->set("address",$address);
+                               
+                                if(   $file1name  != ""   )
+                                 {
+                                        $this->db->set("filename",  $rand1 );   
+                                  }
                       
                       $tel=trim($this->input->get_post("tel"));
-                      $this->db->set("tel",$tel);
+                      if( $tel != ""  )
+                      {
+                              $this->db->set("tel",$tel);
+                      }
                       
                       $birthdmy=trim($this->input->get_post("birthdmy"));
                        if( strlen($birthdmy) > 0 )
                             {
                                 $exd_1=explode("/",$birthdmy);
                                 $birthdmy_conv=  $exd_1[2]."-".$exd_1[0]."-".$exd_1[1];    
-                                  $this->db->set("bmd",$birthdmy_conv);
+                                $this->db->set("bmd",$birthdmy_conv);
                             }
                     
       
                       $email=trim($this->input->get_post("email"));
-                      $this->db->set("email",  $email );
+                      if(  $email != "" )
+                      {
+                             $this->db->set("email",  $email ); 
+                       }
                       
-                      $id_type_donate=trim($this->input->get_post("id_type_donate"));
-                       $this->db->set("id_type_donate",   $id_type_donate );
+                           $id_type_donate=trim($this->input->get_post("id_type_donate"));
+                    if(  $id_type_donate != "" )
+                    {
+                           $this->db->set("id_type_donate",   $id_type_donate );
+                    } 
                       
-                      $ck=  $this->db->insert($tb);
+                            
+                         $tb="donation";
+                         $ck=  $this->db->insert($tb);
                                 if( $ck    )
                                 {
                                     echo "บันทึกสำเร็จ";
@@ -612,6 +600,29 @@ LIMIT 0 , 30
                                 {
                                     echo "บันทึกไม่ล้มเหลว";
                                 }
+                         
+                       
+                         
+                         /*
+                        // http://www.codeigniter.com/user_guide/database/examples.html
+                          $data = array(
+        'title' => $title,
+        'name' => $name,
+        'date' => $date
+);
+
+$this->db->insert('mytable', $data); 
+                          */
+                         
+
+                         
+                         
+                      
+                      
+                      
+
+                       
+                       
       
                           
         }
@@ -672,18 +683,12 @@ LIMIT 0 , 30
         public function  autocomp_donate()
         {
             //http://10.87.196.113/donate/index.php/welcome/autocomp_donate
-              $tb="donation";
+             $tb="donation";
              //$name_donation=$this->input->get_post("name_donation");
-              //$q = isset($_POST['q']) ? $_POST['q'] : ''; 
-               // $q = trim($this->input->get_post("q"));
-                    $q=trim($this->input->get_post("q"));
-            // $query=$this->db->query(" select  *   from  $tb   where  'name_donation'  like  ('%$q%');  ");
+              $q = isset($_POST['q']) ? $_POST['q'] : ''; 
+             //$q = isset($_POST['q']) ? $_POST['q'] : '';
+             $query=$this->db->query(" select  *   from  $tb   where  'name_donation'  like  ('%$q%');  ");
          //      $query=$this->db->query(" select  *   from  $tb   name_donation  like  ('%$q%');  ");
-         
-               //SELECT * FROM donation  where  name_donation like '%น%'   ;
-                    
-                    $this->db->like("name_donation",$q);
-                $query=$this->db->get($tb);
               foreach($query->result() as $row )      
               {
                     $rows[]=$row;

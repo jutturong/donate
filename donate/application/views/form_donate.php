@@ -9,6 +9,8 @@
                               $('#sub_search').combobox('reload');
                               $('#dg_donation').panel('open');
                               $('#tb_donation').datagrid('load','<?=base_url()?>index.php/welcome/tb_donation/'  );
+                              
+                              //tb_donation
                         }
                  });
      }  
@@ -19,10 +21,8 @@
           $('#name_donation').textbox("clear");
           $('#lastname_donation').textbox("clear");
          $('#amount').textbox("setValue","");
-          //$('#address').textbox("setValue","");
-          $('#sub_search').combobox('setValue','');
-          
-          
+          $('#address').textbox("setValue","");
+          $('#sub_search').combobox('reload');
       }
      
 </script>
@@ -49,11 +49,10 @@
              
                  <input class="easyui-combobox" id="sub_search"  style="width: 200px;height: 40px;"    data-options="
                                                 url:'<?=base_url()?>index.php/welcome/autocomp_donate'  ,
-                                                method:'get',    
+                                                method:'post',    
                                                 valueField:'id_donation',
                                                 textField:'name_donation',
                                                 panelHeight:'auto',
-                                                mode:'remote',
                                                 onSelect:function(data)
                                                    { 
                                                         var   name=data.name_donation; 
@@ -61,9 +60,6 @@
                                                          //alert( name  +  '  '  +   lastname  ); 
                                                           $('#name_donation').textbox('setValue',name);
                                                           $('#lastname_donation').textbox('setValue',lastname);
-                                                          var  address=data.address;
-                                                         // alert(address);
-                                                         $('#address').textbox('setValue',  address  ); 
                                                     }
                                             "
                                             />
@@ -95,7 +91,7 @@
 
          <div style="margin:10px  50px  ">
              วัน-เดือน-ปี ที่บริจาค :
-             <input class="easyui-datebox" id="date_donation"   required="true"   name="date_donation" style="width:200px;height: 40px"  data-options=" 
+             <input class="easyui-datebox" id="date_donation"     name="date_donation" style="width:200px;height: 40px"  data-options=" 
                 "     />
          </div>
      
@@ -189,10 +185,11 @@
           <div style="margin:10px   50px  ">
                 ที่อยู่ผู้บริจาค :
                 <input class="easyui-textbox" id="address" name="address"  style="width:270px;height: 70px"  
-                       data-options="  prompt:'ที่อยู่ผู้บริจาค' ,  multiline:true , "    />
-                     
+                       data-options=" 
+                         prompt:'ที่อยู่ผู้บริจาค',
+                         multiline:true,
                          
-                      
+                    "     />
          </div>
          
          <div style="margin:10px   50px  ">

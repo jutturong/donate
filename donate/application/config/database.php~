@@ -48,7 +48,7 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-$db['default']['hostname'] = '10.87.196.210';
+$db['default']['hostname'] = 'http://10.87.196.210';
 $db['default']['username'] = 'root';
 $db['default']['password'] = 'his_trial';
 $db['default']['database'] = 'financial_donation';

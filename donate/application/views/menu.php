@@ -20,7 +20,6 @@ function sigout()
         <!--
         <a href="javascript:void(0)" class="easyui-linkbutton"  onclick="    loadhbd()   " data-options="iconCls:'icon-large-chart' , plain:true  " > E-card อวยพรวันเกิด</a>
          -->
-         <a href="javascript:void(0)"  class="easyui-linkbutton"    plain="true"  iconCls="icon-man"  onclick="  loadhbd() " > ตรวจสอบวันเกิด (BirthDate) </a>
         <a href="javascript:void(0)" class="easyui-linkbutton"  onclick="mainmenu1()" data-options="iconCls:'icon-man' , plain:true  " >รายนามผู้บริจาค</a>
         <a href="javascript:void(0)"  class="easyui-linkbutton"   data-options=" iconCls:'icon-cut' ,  plain:true  "   onclick=" $('#win_search').window('open');  "  >ค้นหา</a>
         <a href="#" class="easyui-menubutton" data-options="menu:'#mm1',iconCls:'icon-edit'"> เพิ่มข้อมูล </a>
