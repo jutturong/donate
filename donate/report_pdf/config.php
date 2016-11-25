@@ -1,7 +1,16 @@
 <?php            
-	  $host="127.0.0.1";
+
+/*	
+ $host="127.0.0.1";
 	  $us="root";
 	  $ps="1234";
+	  $DB="financial_donation";
+
+*/
+
+ $host="10.87.196.210";
+	  $us="root";
+	  $ps="his_trial";
 	  $DB="financial_donation";
          
 

@@ -1,29 +1,21 @@
-<?php
-    /*
-	  $host="127.0.0.1";
+<?php            
+
+/*	
+ $host="127.0.0.1";
 	  $us="root";
 	  $ps="1234";
-	  $DB="kkhp";
-	  */
-	  
-	  /*   
-Database:
-hmprecru_kkhp
-Host:
-localhost
-Username:
-hmprecru_kkhp
-Password:
-hmprecru1234
+	  $DB="financial_donation";
+
 */
-        
 
-	  $host="localhost";
-	  $us="hmprecru_kkhp";
-	  $ps="hmprecru1234";
-	  $DB="hmprecru_kkhp";
+ $host="10.87.196.210";
+	  $us="root";
+	  $ps="his_trial";
+	  $DB="financial_donation";
+         
 
-
+      //$DB="kkhp";
+	  //$objDB = mysql_select_db("kkhp");
 
 	  $connect=mysql_connect($host,$us,$ps) or die("Can't conect MYSQL server!!!");
 	  if( !$connect )
@@ -32,8 +24,7 @@ hmprecru1234
 	  }
 	  mysql_select_db($DB);
 	  mysql_query("SET NAMES UTF8");
-
-
+          
 
 /*
  define("host","localhost");	 
@@ -54,7 +45,6 @@ hmprecru1234
   
    $connect = new mysqlconnect();
   */
-  
      
 
 ?>

@@ -91,8 +91,14 @@
 
          <div style="margin:10px  50px  ">
              วัน-เดือน-ปี ที่บริจาค :
+             
+             <!--
              <input class="easyui-datebox" id="date_donation"     name="date_donation" style="width:200px;height: 40px"  data-options=" 
                 "     />
+             -->
+             <input class="easyui-textbox"  id="date_donation"     name="date_donation"   style="width:200px;height: 40px"   />
+             
+             
          </div>
      
               <div style="margin:10px   50px  ">

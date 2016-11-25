@@ -247,7 +247,12 @@
             if( row )
             {
                 // alert( row.filename );    
-                 window.open('<?=base_url()?>uploadfile/' + row.filename );
+                 //window.open('<?=base_url()?>uploadfile/' + row.filename );
+                // http://10.87.196.170/donate/report_pdf/donate/report_case2.php?id=100
+                var  id=row.id_donation;
+                 var    url='<?=base_url()?>report_pdf/donate/report_case2.php?id=' + id;
+                // alert(url);
+                 window.open(url);
             }
        "></a>  
     <a href="javascript:void(0)" class="icon-search"  data-options="iconAlign:'top' "  onclick="$('#win_search').window('open');"></a>  
