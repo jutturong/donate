@@ -252,7 +252,7 @@
                 var  id=row.id_donation;
                  var    url='<?=base_url()?>report_pdf/donate/report_case2.php?id=' + id;
                 // alert(url);
-                 window.open(url);
+                      window.open(url);
             }
        "></a>  
     <a href="javascript:void(0)" class="icon-search"  data-options="iconAlign:'top' "  onclick="$('#win_search').window('open');"></a>  
